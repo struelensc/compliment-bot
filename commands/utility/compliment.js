@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const compliments = require("../../complimentList.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,6 +14,9 @@ module.exports = {
   async execute(interaction) {
     const user = interaction.options.getUser("user");
 
-    await interaction.reply(`${user}, you're so pretty`);
+    const compliment =
+      compliments[Math.floor(Math.random() * compliments.length)];
+
+    await interaction.reply(`${user}, ${compliment}`);
   },
 };
